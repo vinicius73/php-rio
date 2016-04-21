@@ -1,0 +1,21 @@
+.blockquote-container {
+  .blockquote {
+    text-align: center;
+    padding: 0 5em;
+    border-bottom: 1px solid $brand-primary;
+    margin-bottom: 4em;
+    header {
+      @extend .text-muted;
+      font-size: 1.2em;
+      img {
+        @extend .img-circle;
+        display: inline-block;
+        width: 25px;
+      }
+    }
+    > p {
+      font-size: 2em;
+      color: $gray-darker;
+    }
+  }
+}

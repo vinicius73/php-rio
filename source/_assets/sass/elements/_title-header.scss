@@ -1,0 +1,14 @@
+.title-header {
+  padding-bottom: (($line-height-computed / 2) - 1);
+  margin: ($line-height-computed * 2) 0 $line-height-computed;
+  text-align: center;
+  border-top: 1px solid $brand-primary;
+  h1, h2, h3, h4 {
+    background-color: $brand-primary;
+    display: inline-block;
+    margin: 0;
+    padding: 0.3em 0.6em;
+    color: #FFF;
+    text-transform: uppercase;
+  }
+}

@@ -1,0 +1,18 @@
+#main-header {
+  background-color: #FFF;
+  min-height: 100px;
+  position: relative;
+  .header-title {
+    text-align: center;
+    vertical-align: middle;
+    line-height: 100px;
+    margin: 0;
+  }
+}
+
+#btn-call-sidebar {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  margin: 25px;
+}

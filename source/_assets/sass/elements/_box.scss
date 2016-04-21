@@ -1,0 +1,27 @@
+.box {
+  @extend .panel;
+
+  .box-header, > header {
+    text-align: center;
+    padding: 1em 0;
+    h2, h3, h4 {
+      margin: 0;
+    }
+    > .fa {
+      font-size: 2em;
+    }
+  }
+  .box-body, > div {
+    @extend .panel-body;
+  }
+
+  .box-footer, > footer {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    a {
+      @extend .btn, .btn-block, .btn-primary;
+      border: none;
+    }
+  }
+}
