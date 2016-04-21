@@ -18,9 +18,10 @@ module.exports = function(Config) {
         };
 
         Config.helpers.checkFiles(src);
-        
+
         return browserify(src, options)
             .transform(vueify)
+            .transform("babelify", {presets: ["es2015"]})
             .bundle().on('error', notify.callErrorNotify())
             .pipe(vinylSource('app.bundle.js'))
             .pipe(gulp.dest(dest))
