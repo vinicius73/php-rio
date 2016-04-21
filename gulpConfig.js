@@ -48,18 +48,12 @@ module.exports = (function () {
         bundle: this.srcPath('/js/app.js'),
         vendors: this.rootPath(pkgConf['gulp-config'].vendors.js),
       },
-      rev: {
-        files: pkgConf['gulp-config'].rev,
-        options: {
-          base: 'public',
-        },
-      },
-      images: this.srcPath('img/**/*.{jpg,svg,gif,png,jpeg}'),
-      fonts: fontsSrc,
       styles: {
         main: this.srcPath('/sass/main.scss'),
         vendors: pkgConf['gulp-config'].vendors.css,
       },
+      images: this.srcPath('img/**/*.{jpg,svg,gif,png,jpeg}'),
+      fonts: fontsSrc,
       jshint: this.srcPath(['/js/**/*.js']),
     };
 
@@ -74,6 +68,7 @@ module.exports = (function () {
     this.watch = {
       styles: this.srcPath(['/**/*.scss']),
       js: this.srcPath(['/js/**/*.{js,vue}']),
+      html: this.rootPath('source/**/*.{php,md}'),
       build: this.buildPath(['/**/*.js', '/**/*.css', '/**/*.html']),
     };
 
