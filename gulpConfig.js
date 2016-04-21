@@ -1,12 +1,17 @@
-'strict';
+'use strict';
+
 var _ = require('lodash');
 var fs = require('fs');
 var gutil = require('gulp-util');
 var notify = require('./gulpNotify.js');
 var path = require('path');
 var pkgConf = require('./package.json');
+
 var txtGreen = function txtGreen(txt) {
   return gutil.colors.bgGreen(txt);
+};
+var txtRed = function txtRed(txt) {
+  return gutil.colors.bgRed(txt);
 };
 
 var pathJoin = function pathJoin(base, _string) {
@@ -23,6 +28,8 @@ module.exports = (function () {
   var PATH_ROOT = __dirname;
   var PATH_SRC = pathJoin(PATH_ROOT, 'source/_assets');
   var PATH_DEST = pathJoin(PATH_ROOT, 'source/assets');
+  var PATH_BUILD = pathJoin(PATH_ROOT, 'build_local');
+
   var Config = function Config(_env) {
     this.ENV = (_env.production) ? 'production' : 'development';
 
@@ -63,11 +70,13 @@ module.exports = (function () {
       images: this.destPath('/img'),
       rev: this.destPath('/build'),
     };
+
     this.watch = {
       styles: this.srcPath(['/**/*.scss']),
       js: this.srcPath(['/js/**/*.{js,vue}']),
-      build: this.destPath(['js/**/*.js', 'css/**/*.css']),
+      build: this.buildPath(['/**/*.js', '/**/*.css', '/**/*.html']),
     };
+
     this.delPaths = {
       fonts: [this.dest.fonts],
       images: [this.dest.images],
@@ -78,7 +87,9 @@ module.exports = (function () {
     root: PATH_ROOT,
     src: PATH_SRC,
     dest: PATH_DEST,
+    build: PATH_BUILD,
   };
+
   Config.prototype.isProduction = function isProduction() {
     return this.ENV == 'production';
   };
@@ -87,12 +98,16 @@ module.exports = (function () {
     return pathJoin(this.paths.root, value);
   };
 
-  Config.prototype.srcPath = function rootPath(value) {
+  Config.prototype.srcPath = function srcPath(value) {
     return pathJoin(this.paths.src, value);
   };
 
-  Config.prototype.destPath = function rootPath(value) {
+  Config.prototype.destPath = function destPath(value) {
     return pathJoin(this.paths.dest, value);
+  };
+
+  Config.prototype.buildPath = function buildPath(value) {
+    return pathJoin(this.paths.build, value);
   };
 
   Config.prototype.getBanner = function () {
@@ -104,7 +119,7 @@ module.exports = (function () {
       _files = Array.isArray(_files) ? _files : [_files];
       _files.forEach(function (file) {
         if (!(file.match(/\*/) || fs.existsSync(file))) {
-          console.log('  - ' + gutil.colors.bgRed(file) + ' <-- Not Found');
+          console.log('  - ' + txtRed(file) + ' <-- Not Found');
         }
       });
     },
