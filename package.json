@@ -1,5 +1,25 @@
 {
+  "name": "PHP-RIO",
+  "description": "Site PHP Rio",
+  "version": "0.1.0",
+  "homepage": "http://www.phprio.org/",
+  "keywords": [
+    "phprio"
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/mit-license.php"
+    }
+  ],
   "private": true,
+  "contributors": [
+    "Vinicius Reis <luiz.vinicius73@gmail.com> (http://luizvinicius.com.br)"
+  ],
+  "engines": {
+    "node": ">=4"
+  },
+  "dependencies": {},
   "devDependencies": {
     "babel-core": "^6.5.2",
     "babel-plugin-transform-runtime": "^6.5.2",
