@@ -1,15 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <link rel="stylesheet" href="/assets/css/vendors.css">
-        <link rel="stylesheet" href="/assets/css/main.css">
-    </head>
-    <body>
-        @yield('body')
-        <script src="/assets/js/vendors.js" charset="utf-8"></script>
-        <script src="/assets/js/app.bundle.js" charset="utf-8"></script>
-    </body>
-</html>
+@extends('_layouts.base')
+
+@section('body')
+<header id="main-header">
+  <a href="javascript:;"
+     class="btn-dash"
+     :class="{'open': sidebar.displaying}"
+     id="btn-call-sidebar"
+     @click="callSidebar()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </a>
+  <nav id="top-nav" class="container">
+    <h1 class="header-title">@yield('header::title', 'PHPRio')</h1>
+  </nav>
+</header>
+
+  <div id="main">
+    <header id="page-header">
+      <h2>A melhor comunidade de PHP do Rio de Janeiro ;)</h2>
+    </header>
+
+    <div class="container" id="main-content">
+      @yield('main::content')
+    </div>
+  </div>
+@endsection
