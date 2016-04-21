@@ -1,15 +1,23 @@
 var gulp = require('gulp');
-var elixir = require('laravel-elixir');
+var Config = require('./gulpConfig.js');
 
-elixir.config.assetsPath = 'source/_assets';
-elixir.config.publicPath = 'source';
+Config.loadTasks('gulpTasks');
 
-elixir(function(mix) {
-    mix.sass('main.scss')
-        .exec('jigsaw build', ['./source/**/*', '!./source/_assets/**/*'])
-        .browserSync({
-            server: { baseDir: 'build_local' },
-            proxy: null,
-            files: [ 'build_local/**/*' ]
-        });
-});
+function rev(gulp) {
+    gulp.src('.')
+        .on('finish', function() {
+            return gulp.start('rev');
+        })
+}
+
+gulp.task('default', ['copy', 'scripts', 'styles']);
+
+gulp.task('build:main', ['scripts:bundle', 'styles:main']);
+
+gulp.task('build:assets', ['copy']);
+
+gulp.task('build:vendors', ['scripts:vendors', 'styles:vendors']);
+
+gulp.task('build:scripts', ['scripts']);
+
+gulp.task('build:styles', ['styles']);
